@@ -1,0 +1,12 @@
+{
+  "name": "leap-provider",
+  "version": "1.0.0",
+  "description": "Ethers.js Provider for Leap Network",
+  "main": "index.js",
+  "repository": "git@github.com:leapdao/leap-provider.git",
+  "author": "Kosta Korenkov <kosta@whoot.me>",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^4.0.33"
+  }
+}
