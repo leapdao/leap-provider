@@ -19,7 +19,7 @@ class LeapProvider extends ethers.providers.JsonRpcProvider {
       let params = { signedTransaction: signedTransaction.hex() };
       return this.perform('sendTransaction', params).then((hash) => {
           return this._wrapTransaction({ hash: signedTransaction.hash() }, hash);
-      }, function (error) {
+      }, (error) => {
           error.transaction = { raw: signedTransaction.hex() };
           error.transactionHash = signedTransaction.hash();
           throw error;
