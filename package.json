@@ -6,7 +6,7 @@
   "repository": "git@github.com:leapdao/leap-provider.git",
   "author": "Kosta Korenkov <kosta@whoot.me>",
   "license": "MIT",
-  "dependencies": {
-    "ethers": "^4.0.33"
+  "peerDependencies": {
+    "ethers": "~4.0"
   }
 }
