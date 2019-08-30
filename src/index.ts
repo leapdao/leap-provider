@@ -1,6 +1,7 @@
-const ethers = require('ethers');
+import { JsonRpcProvider } from 'ethers/providers/json-rpc-provider';
+import { Transaction } from 'ethers/utils/transaction';
 
-class LeapProvider extends ethers.providers.JsonRpcProvider {
+class LeapProvider extends JsonRpcProvider {
 
   /**
    * Overrides `BaseProvider.sendTransaction` to exclude tx parsing
@@ -18,7 +19,10 @@ class LeapProvider extends ethers.providers.JsonRpcProvider {
     return this.ready.then(() => {
       let params = { signedTransaction: signedTransaction.hex() };
       return this.perform('sendTransaction', params).then((hash) => {
-          return this._wrapTransaction({ hash: signedTransaction.hash() }, hash);
+          return this._wrapTransaction(
+            { hash: signedTransaction.hash() } as Transaction,
+            hash
+          );
       }, (error) => {
           error.transaction = { raw: signedTransaction.hex() };
           error.transactionHash = signedTransaction.hash();
