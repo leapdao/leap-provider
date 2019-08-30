@@ -2,11 +2,21 @@
   "name": "leap-provider",
   "version": "1.0.0",
   "description": "Ethers.js Provider for Leap Network",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:leapdao/leap-provider.git",
   "author": "Kosta Korenkov <kosta@whoot.me>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -d src/index.ts --outDir dist/"
+  },
   "peerDependencies": {
+    "ethers": "~4.0"
+  },
+  "dependencies": {
+    "typescript": "^3.6.2"
+  },
+  "devDependencies": {
     "ethers": "~4.0"
   }
 }
