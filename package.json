@@ -8,15 +8,15 @@
   "author": "Kosta Korenkov <kosta@whoot.me>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -d src/index.ts --outDir dist/"
+    "build": "tsc -t ES5 --esModuleInterop -d src/index.ts --outDir dist/"
   },
   "peerDependencies": {
-    "ethers": "~4.0"
-  },
-  "dependencies": {
-    "typescript": "^3.6.2"
+    "ethers": "~4.0",
+    "leap-core": "^0.35.0"
   },
   "devDependencies": {
-    "ethers": "~4.0"
+    "typescript": "^3.6.2",
+    "ethers": "~4.0",
+    "leap-core": "^0.35.0"
   }
 }
