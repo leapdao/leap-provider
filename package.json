@@ -1,6 +1,6 @@
 {
   "name": "leap-provider",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ethers.js Provider for Leap Network",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
