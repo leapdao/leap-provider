@@ -45,8 +45,8 @@ class LeapProvider extends JsonRpcProvider {
     return this.send('plasma_getColor', [toLowerCase(tokenAddress)]);
   }
 
-  getColors(): Promise<string[]> {
-    return this.send('plasma_getColors', []);
+  getColors(isNft?: boolean, isNst?: boolean): Promise<string[]> {
+    return this.send('plasma_getColors', [isNft, isNst]);
   }
 
   status(): Promise<string> {
