@@ -21,6 +21,20 @@ const hexlify = (tx: Tx<Type> | string): string => {
   return tx as string;
 };
 
+enum TokenType {
+  ERC20 = 'erc20',
+  ERC721 = 'erc721',
+  NFT = 'nft',
+  ERC1948 = 'erc1948',
+  NST = 'nst',
+};
+
+interface Colors {
+  erc20: Array<string>;
+  erc721: Array<string>;
+  erc1948: Array<string>;
+};
+
 class LeapProvider extends JsonRpcProvider {
 
   getUnspent(address?: string, color?: string|number): Promise<Array<Unspent>> {
@@ -45,8 +59,23 @@ class LeapProvider extends JsonRpcProvider {
     return this.send('plasma_getColor', [toLowerCase(tokenAddress)]);
   }
 
-  getColors(isNft?: boolean, isNst?: boolean): Promise<string[]> {
-    return this.send('plasma_getColors', [isNft, isNst]);
+  getColors(type?: TokenType): Promise<string[] | Colors> {
+    if (type === TokenType.ERC721 || type === TokenType.NFT) {
+      return this.send('plasma_getColors', [true, false]);
+    }
+    if (type === TokenType.ERC1948 || type === TokenType.NST) {
+      return this.send('plasma_getColors', [false, true]);
+    }
+
+    if (type === TokenType.ERC20) {
+      return this.send('plasma_getColors', [false, false]);
+    }
+
+    return Promise.all([
+      this.send('plasma_getColors', [false, false]),
+      this.send('plasma_getColors', [true, false]),
+      this.send('plasma_getColors', [false, true]),
+    ]).then(([erc20, erc721, erc1948]) => ({ erc20, erc721, erc1948 }));
   }
 
   status(): Promise<string> {
