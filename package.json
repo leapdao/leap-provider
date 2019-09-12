@@ -8,7 +8,9 @@
   "author": "Kosta Korenkov <kosta@whoot.me>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -t ES5 --esModuleInterop -d src/index.ts --outDir dist/"
+    "prebuild": "rm -rf dist",
+    "build": "tsc -t ES5 --esModuleInterop -d src/index.ts --outDir dist/",
+    "prepublish": "yarn prebuild && yarn build"
   },
   "peerDependencies": {
     "ethers": "~4.0",
